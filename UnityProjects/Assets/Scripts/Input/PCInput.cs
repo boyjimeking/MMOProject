@@ -4,7 +4,7 @@ namespace YCG.YCInput
 {
 	public class PCInput : IInput
 	{
-		public bool GetTapDown 
+		public bool TapDown 
 		{ 
 			get
 			{
@@ -12,7 +12,7 @@ namespace YCG.YCInput
 			}
 		}
 
-		public bool GetTap 
+		public bool Tap 
 		{
 			get
 			{
@@ -20,7 +20,7 @@ namespace YCG.YCInput
 			}
 		}
 
-		public bool GetTapUp 
+		public bool TapUp 
 		{ 
 			get
 			{
@@ -28,7 +28,7 @@ namespace YCG.YCInput
 			}
 		}
 
-		public Vector2 GetTapPosition
+		public Vector2 TapPosition
 		{
 			get 
 			{

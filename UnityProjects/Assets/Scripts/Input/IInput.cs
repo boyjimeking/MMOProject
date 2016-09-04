@@ -4,9 +4,9 @@ namespace YCG.YCInput
 {
 	public interface IInput
 	{
-		bool GetTapDown { get; }
-		bool GetTap { get; }
-		bool GetTapUp { get; }
-		Vector2 GetTapPosition { get; }
+		bool TapDown { get; }
+		bool Tap { get; }
+		bool TapUp { get; }
+		Vector2 TapPosition { get; }
 	}
 }

@@ -7,6 +7,7 @@ namespace YCG.Player
 	{
 		void Awake()
 		{
+			OnAwake ();
 		}
 
 		protected virtual void OnAwake()
@@ -15,6 +16,7 @@ namespace YCG.Player
 
 		void Update()
 		{
+			OnUpdate ();
 		}
 
 		protected virtual void OnUpdate()

@@ -7,7 +7,7 @@ namespace YCG
 	{
 		void Awake()
 		{
-			YCInput.InputManager.Initialize ();
+			YCInput.YCGInput.Initialize ();
 		}
 	}
 }

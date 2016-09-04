@@ -15,9 +15,18 @@ namespace YCG.Player
 		public float Speed { get; protected set; }
 		public float Size { get; protected set; }
 
+		void Awake()
+		{
+			InitializeParameter ();
+		}
+		//FIXME:Debug
 		public void InitializeParameter()
 		{
-			Controller = gameObject.AddComponent<MyPlayerController> ();
+			var attachedController = GetComponent<IPlayerUnitController> ();
+			if (attachedController == null)
+				Controller = gameObject.AddComponent<MyPlayerController> ();
+			else
+				Controller = attachedController;
 			HP = 10;
 			Attack = 1.0f;
 			Speed = 5.0f;

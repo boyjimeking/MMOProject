@@ -6,28 +6,28 @@ namespace YCG.YCInput
 	public class MobileInput : IInput
 	{
 
-		public bool GetTapDown { 
+		public bool TapDown { 
 			get
 			{
 				return IsValidTouchCount (1) && Input.GetTouch (0).phase == TouchPhase.Began;
 			}
 		}
 
-		public bool GetTap { 
+		public bool Tap { 
 			get
 			{
 				return IsValidTouchCount (1) && Input.GetTouch (0).phase == TouchPhase.Moved;
 			}
 		}
 
-		public bool GetTapUp { 
+		public bool TapUp { 
 			get
 			{
 				return IsValidTouchCount (1) && Input.GetTouch (0).phase == TouchPhase.Ended;
 			}
 		}
 
-		public Vector2 GetTapPosition
+		public Vector2 TapPosition
 		{
 			get 
 			{
