@@ -3,7 +3,7 @@ using YCG.Attachment;
 
 namespace YCG.Player
 {
-	public interface IPlayerUnit
+	public interface IPlayerUnit : ICharacterUnit
 	{
 		IPlayerUnitController Controller { get; }
 		

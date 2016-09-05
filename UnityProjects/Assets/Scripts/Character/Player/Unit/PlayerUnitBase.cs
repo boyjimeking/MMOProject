@@ -4,7 +4,7 @@ using YCG.Attachment;
 
 namespace YCG.Player
 {
-	public class UnitBase : MonoBehaviour, IPlayerUnit
+	public class PlayerUnitBase : MonoBehaviour, IPlayerUnit
 	{
 		[SerializeField]
 		AttachmentBase _debugAttachment;
