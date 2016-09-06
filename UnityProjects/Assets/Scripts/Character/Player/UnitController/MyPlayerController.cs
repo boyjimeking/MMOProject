@@ -25,10 +25,11 @@ namespace YCG.Player
 				Vector2 tapPos = YCGInput.TapPosition;
 				Vector3 toPos = Utility.ScreenPointToGroundPosition(tapPos);
 				transform.DOKill ();
-				transform.DOMove (toPos, 1f).SetEase (Ease.Linear).OnComplete(()=>{
+				MoveTo (toPos, ()=>{
 					_debugMarker.enabled = false;
 					_debugNaviLine.enabled = false;
 				});
+
 				//debug
 				_debugMarker.enabled = true;
 				_debugNaviLine.enabled = true;

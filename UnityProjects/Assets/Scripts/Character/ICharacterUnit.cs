@@ -10,6 +10,7 @@ namespace YCG
 		float Speed { get; }
 		float Size { get; }
 
+		void Death();
 		void Damage(int damage);
 		void Recover(int recover);
 	}

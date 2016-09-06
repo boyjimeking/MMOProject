@@ -3,24 +3,22 @@ using System.Collections;
 
 namespace YCG.Attachment
 {
-	public abstract class AttachmentBase : MonoBehaviour, IAttachment
+	public abstract class AttachmentBase : AbstractMonoBehaviour, IAttachment
 	{
+		protected ICharacterUnit _owner;
 		protected InvokeType _invokeType;
 		protected float _invokeInterval = 1.0f;
 		private float _elapsedTime;
 
-		void Awake()
-		{
-			OnAwake ();
-		}
+        protected override void OnAwake()
+        {
+            base.OnAwake();
+            _owner = GetComponentInParent<ICharacterUnit>();
+        }
 
-		protected virtual void OnAwake()
+		protected override void OnUpdate()
 		{
-		}
-
-		void Update()
-		{
-			OnUpdate ();
+			base.OnUpdate ();
 			var args = new AttachmentArgs () {
 				BaseAttack = 1f
 			};
@@ -37,10 +35,6 @@ namespace YCG.Attachment
 				_elapsedTime += Time.deltaTime;
 				break;
 			}
-		}
-
-		protected virtual void OnUpdate()
-		{
 		}
 
 		public virtual void OnAttach()

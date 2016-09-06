@@ -1,31 +1,18 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
 namespace YCG.Player
 {
-	public abstract class UnitControllerBase : MonoBehaviour, IPlayerUnitController 
+	public abstract class UnitControllerBase : AbstractMonoBehaviour, IPlayerUnitController 
 	{
-		void Awake()
+		protected void MoveTo(Vector3 to, Action onComplete)
 		{
-			OnAwake ();
-		}
-
-		protected virtual void OnAwake()
-		{
-		}
-
-		void Update()
-		{
-			OnUpdate ();
-		}
-
-		protected virtual void OnUpdate()
-		{
-		}
-
-		protected void MoveTo(Vector3 to)
-		{
-			transform.position = to;
+			float dist = Vector3.Distance (transform.position, to);
+			transform.DOMove (to, 0.2f * dist).SetEase (Ease.Linear).OnComplete(()=>{
+				onComplete();
+			});
 		}
 	}
 }

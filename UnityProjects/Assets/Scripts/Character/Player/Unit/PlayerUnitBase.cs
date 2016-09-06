@@ -64,6 +64,11 @@ namespace YCG.Player
 			AddAttachment (attachment, slot);
 		}
 
+		public virtual void Death()
+		{
+			Destroy (gameObject);
+		}
+
 		public virtual void Damage(int damage)
 		{
 			HP -= damage;

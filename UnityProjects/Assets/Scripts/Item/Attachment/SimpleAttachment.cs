@@ -19,6 +19,7 @@ namespace YCG.Attachment
 			base.OnInvoke (args);
 			var bullet = Instantiate (_bullet, transform.position, _bullet.transform.rotation) as IBullet;
 			bullet.Direction = transform.up;
+            bullet.Owner = _owner;
 		}
 	}
 }

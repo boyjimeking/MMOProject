@@ -1,15 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyBase : MonoBehaviour {
+namespace YCG
+{
+	public abstract class EnemyUnitBase : AbstractMonoBehaviour, IEnemyUnit
+	{
+		public int HP { get; protected set; }
+		public float Attack { get; protected set; }
+		public float Speed { get; protected set; }
+		public float Size { get; protected set; }
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+		public virtual void Death()
+		{
+			Destroy (gameObject);
+		}
+
+		public virtual void Damage(int damage)
+		{
+			HP -= damage;
+            if (HP < 0)
+            {
+                Death();
+            }
+		}
+
+		public virtual void Recover(int recover)
+		{
+			HP += recover;
+		}
 	}
 }
