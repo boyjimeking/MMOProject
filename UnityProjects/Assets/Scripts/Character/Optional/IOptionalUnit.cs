@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 namespace YCG
 {
-    public interface IItem
+    public interface IOptionalUnit : ICharacterUnit
     {
-        void OnGet();
+
     }
 }
