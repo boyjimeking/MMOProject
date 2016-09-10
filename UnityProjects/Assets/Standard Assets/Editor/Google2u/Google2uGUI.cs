@@ -1045,7 +1045,13 @@ namespace Google2u
 #else
                 EditorUserBuildSettings.activeBuildTarget != BuildTarget.iPhone &&
 #endif
-                EditorUserBuildSettings.activeBuildTarget != BuildTarget.WP8Player)
+
+#if !UNITY_5_4_OR_NEWER
+                EditorUserBuildSettings.activeBuildTarget != BuildTarget.WP8Player
+#else
+                true
+#endif
+                )
             {
                 EditorGUILayout.HelpBox(LocalizationInfo.Localize(Localization.rowIds.ID_ERROR_BUILD_TARGET),
                     MessageType.Error);
@@ -1180,16 +1186,16 @@ namespace Google2u
             return s + in_string;
         }
 
-        #region Styles
+#region Styles
 
         public static bool StylesLoaded = false;
         public static bool UseDarkSkin = false;
         public static bool stylesLoaded;
         public static GUISkin Google2uSkin;
 
-        #endregion
+#endregion
 
-        #region Paths
+#region Paths
 
         private string _ObjDbResourcesDirectory;
         private string _ObjDbEditorDirectory;
@@ -1202,9 +1208,9 @@ namespace Google2u
         public static bool FoundPlaymaker;
         public static bool FoundNgui;
 
-        #endregion
+#endregion
 
-        #region Menu Visibility
+#region Menu Visibility
 
         // RSS notification area
         public bool ShowRSS = true;
@@ -1244,6 +1250,6 @@ namespace Google2u
         public bool ShowHelpDocs;
         public bool ShowHelpLog;
 
-        #endregion
+#endregion
     }
 }
