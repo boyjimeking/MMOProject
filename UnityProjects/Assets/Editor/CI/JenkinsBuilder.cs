@@ -17,7 +17,7 @@ public class JenkinsBuilder
         PlayerSettings.statusBarHidden = true;
         BuildPipeline.BuildPlayer( 
             allScene.ToArray(),
-            "YCGame.apk",
+            "C:/Users/NaotoSasaki/UnityProjects/YCGameProject/Build/YCGame.apk",
             BuildTarget.Android,
             BuildOptions.None
         );
