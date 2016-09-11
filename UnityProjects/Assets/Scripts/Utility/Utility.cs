@@ -12,5 +12,6 @@ namespace YCG
 			_groundPlane.Raycast (ray, out dist);
 			return ray.GetPoint (dist);
 		}
+
 	}
 }

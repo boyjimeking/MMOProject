@@ -6,7 +6,7 @@ namespace YCG.Player
 {
 	public class PlayerUnitBase : MonoBehaviour, IPlayerUnit
 	{
-		public IPlayerUnitController Controller { get; protected set; }
+		public MyPlayerController Controller { get; protected set; }
 		
 		public Dictionary<int, IAttachment> AttachmentList { get; protected set; }
 		public List<int> AttachmentCount { get; protected set; }
@@ -32,7 +32,7 @@ namespace YCG.Player
 		//FIXME:Debug
 		public void InitializeParameter()
 		{
-			var attachedController = GetComponent<IPlayerUnitController> ();
+			var attachedController = GetComponent<MyPlayerController> ();
 			if (attachedController == null)
 				Controller = gameObject.AddComponent<MyPlayerController> ();
 			else

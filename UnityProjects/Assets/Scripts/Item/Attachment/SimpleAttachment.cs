@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using YCG.Player;
 
 namespace YCG.Attachment
 {
@@ -18,7 +18,16 @@ namespace YCG.Attachment
 		{
 			base.OnInvoke (args);
 			var bullet = Instantiate (_bullet, transform.position, _bullet.transform.rotation) as IBullet;
-			bullet.Direction = transform.up;
+            bullet.Direction = Vector3.ProjectOnPlane(transform.up, Vector3.up).normalized;
+            if (_owner is PlayerUnitBase)
+            {
+                var player = _owner as PlayerUnitBase;
+                var target = player.Controller.TargetEnemy;
+                if (target != null)
+                {
+                    bullet.Direction = (target.transform.position - transform.position).normalized;
+                }
+            }
             bullet.Owner = _owner;
 		}
 	}

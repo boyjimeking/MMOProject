@@ -5,7 +5,7 @@ namespace YCG.Player
 {
 	public interface IPlayerUnit : ICharacterUnit
 	{
-		IPlayerUnitController Controller { get; }
+		MyPlayerController Controller { get; }
 		
 		Dictionary<int, IAttachment> AttachmentList { get; }
 		List<int> AttachmentCount { get; }
