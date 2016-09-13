@@ -51,7 +51,7 @@ namespace YCG
 
             //Reset
             _attackWaitTime -= Time.deltaTime;
-            _targetUnit = null;
+            _targetUnit = TapTargetManager.instance.TargetEnemy;
         }
 
         private void ChaseTarget()
@@ -75,6 +75,9 @@ namespace YCG
 
         void OnTriggerStay(Collider hitCol)
         {
+            if (_targetUnit != null)
+                return;
+
             var character = hitCol.GetComponent<ICharacterUnit>();
             if (character == null)
                 return;

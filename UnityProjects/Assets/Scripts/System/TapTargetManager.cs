@@ -59,7 +59,7 @@ namespace YCG
 		{
 			Ray ray = Camera.main.ScreenPointToRay (tapPos);
             RaycastHit hit;
-            Physics.Raycast(ray, out hit);
+            Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("Enemy"));
             if (hit.collider == null)
                 return false;
 
