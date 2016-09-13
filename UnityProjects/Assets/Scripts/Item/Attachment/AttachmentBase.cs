@@ -7,7 +7,7 @@ namespace YCG.Attachment
 	{
 		protected ICharacterUnit _owner;
 		protected InvokeType _invokeType;
-		protected float _invokeInterval = 1.0f;
+		protected float _invokeInterval = 0.25f;
 		private float _elapsedTime;
 
         protected override void OnAwake()

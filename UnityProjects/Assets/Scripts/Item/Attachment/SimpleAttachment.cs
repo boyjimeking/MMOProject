@@ -22,7 +22,7 @@ namespace YCG.Attachment
             if (_owner is PlayerUnitBase)
             {
                 var player = _owner as PlayerUnitBase;
-                var target = player.Controller.TargetEnemy;
+                var target = TapTargetManager.instance.TargetEnemy;
                 if (target != null)
                 {
                     bullet.Direction = (target.transform.position - transform.position).normalized;
