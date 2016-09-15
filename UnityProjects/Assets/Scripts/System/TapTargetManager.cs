@@ -37,10 +37,10 @@ namespace YCG
             ResetTargetEnemy();
             if (enemy != TargetEnemy)
             {
+                TargetEnemy = enemy;
+                TargetEnemy.GetComponentInChildren<SpriteRenderer>().color = Color.red;
                 ChangeAttackTargetEvent.Invoke();
             }
-            TargetEnemy = enemy;
-            TargetEnemy.GetComponentInChildren<SpriteRenderer>().color = Color.red;
         }
 
         void Update()

@@ -7,12 +7,10 @@ namespace YCG.Player
 	{
 		MyPlayerController Controller { get; }
 		
-		Dictionary<int, IAttachment> AttachmentList { get; }
+		IWeapon Weapon { get; }
 		List<int> AttachmentCount { get; }
 		List<int> RequiredExperiencePointList { get; }
 
-		void AddAttachment(IAttachment attachment, int slot);
-		void RemoveAttachment(int slot);
-		void ChangeAttachment(IAttachment attachment, int slot);
+		void SetWeapon(IWeapon weapon);
 	}
 }

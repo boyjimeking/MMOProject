@@ -9,14 +9,12 @@ namespace YCG.Attachment
 		int _power = 2;
 		[SerializeField]
 		float _speed = 10f;
-		[SerializeField]
-		float _lifeTime = 5f;
         float _elapsedTime = 0f;
 
 		public int Power { get; private set; }
 		public float Speed { get; private set; }
 		public float LifeTime { get; private set; }
-		public Vector3 Direction { get; set; }
+		public Vector3 Direction { get; private set; }
 		public ICharacterUnit Owner { get; set; }
 
 		protected override void OnAwake ()
@@ -24,7 +22,6 @@ namespace YCG.Attachment
 			base.OnAwake ();
 			Power = _power;
 			Speed = _speed;
-            LifeTime = _lifeTime;
 		}
 
 		protected override void OnUpdate ()
@@ -36,6 +33,12 @@ namespace YCG.Attachment
             }
             _elapsedTime += Time.deltaTime;
 		}
+
+        public void SetBulletInfo(Vector3 dir, float range)
+        {
+            Direction = dir;
+            LifeTime = range / Speed;
+        }
 
 		protected virtual void OnHitBullet (ICharacterUnit hitUnit)
 		{

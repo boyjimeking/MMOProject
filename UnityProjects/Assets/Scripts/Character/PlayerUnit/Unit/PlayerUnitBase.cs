@@ -7,8 +7,10 @@ namespace YCG.Player
 	public class PlayerUnitBase : MonoBehaviour, IPlayerUnit
 	{
 		public MyPlayerController Controller { get; protected set; }
-		
-		public Dictionary<int, IAttachment> AttachmentList { get; protected set; }
+
+        [SerializeField]
+        WeaponBase _temporaryWeapon;
+		public IWeapon Weapon { get; protected set; }
 		public List<int> AttachmentCount { get; protected set; }
 		public List<int> RequiredExperiencePointList { get; protected set; }
 		public int HP { get; protected set; }
@@ -20,11 +22,11 @@ namespace YCG.Player
 		{
 			InitializeList ();
 			InitializeParameter ();
+            SetWeapon(_temporaryWeapon);
 		}
 
 		public void InitializeList()
 		{
-			AttachmentList = new Dictionary<int, IAttachment> ();
 			AttachmentCount = new List<int> ();
 			RequiredExperiencePointList = new List<int> ();
 		}
@@ -37,6 +39,8 @@ namespace YCG.Player
 				Controller = gameObject.AddComponent<MyPlayerController> ();
 			else
 				Controller = attachedController;
+            Controller.Self = this;
+
 			var param = Google2u.Player.Instance.GetRow (0);
 			HP = param._HP;
 			Attack = param._Attack;
@@ -44,20 +48,9 @@ namespace YCG.Player
 			Size = param._Size;
 		}
 
-		public virtual void AddAttachment(IAttachment attachment, int slot)
+		public virtual void SetWeapon(IWeapon weapon)
 		{
-			AttachmentList [slot] = attachment;
-		}
-
-		public virtual void RemoveAttachment(int slot)
-		{
-			AttachmentList.Remove (slot);
-		}
-
-		public virtual void ChangeAttachment(IAttachment attachment, int slot)
-		{
-			RemoveAttachment (slot);
-			AddAttachment (attachment, slot);
+            Weapon = weapon;
 		}
 
 		public virtual void Death()

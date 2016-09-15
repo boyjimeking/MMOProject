@@ -7,6 +7,8 @@ namespace YCG.Player
 {
 	public abstract class UnitControllerBase : AbstractMonoBehaviour, IPlayerUnitController 
 	{
+        public IPlayerUnit Self { get; set; }
+
 		protected void MoveTo(Vector3 to, Action onComplete)
 		{
 			float dist = Vector3.Distance (transform.position, to);

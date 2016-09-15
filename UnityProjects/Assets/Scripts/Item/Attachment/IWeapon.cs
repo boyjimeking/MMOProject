@@ -1,8 +1,10 @@
 ﻿
 namespace YCG.Attachment
 {
-	public interface IAttachment
+	public interface IWeapon
 	{
+        float Range { get; }
+		float InvokeInterval { get; }
 		void OnAttach();
 		void OnDeattach();
 		void OnInvoke(AttachmentArgs args);

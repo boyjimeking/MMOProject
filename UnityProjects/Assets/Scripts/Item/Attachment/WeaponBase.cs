@@ -3,11 +3,13 @@ using System.Collections;
 
 namespace YCG.Attachment
 {
-	public abstract class AttachmentBase : AbstractMonoBehaviour, IAttachment
+	public abstract class WeaponBase : AbstractMonoBehaviour, IWeapon
 	{
+        public float Range { get; protected set; }
+		public float InvokeInterval { get; protected set; }
+
 		protected ICharacterUnit _owner;
 		protected InvokeType _invokeType;
-		protected float _invokeInterval = 0.25f;
 		private float _elapsedTime;
 
         protected override void OnAwake()
@@ -28,7 +30,7 @@ namespace YCG.Attachment
 				OnInvoke (args);
 				break;
 			case InvokeType.ConstInterval:
-				if (_elapsedTime > _invokeInterval) {
+				if (_elapsedTime > InvokeInterval) {
 					OnInvoke (args);
 					_elapsedTime = 0f;
 				}
