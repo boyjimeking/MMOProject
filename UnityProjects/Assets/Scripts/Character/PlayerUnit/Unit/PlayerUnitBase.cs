@@ -9,10 +9,14 @@ namespace YCG.Player
 		public MyPlayerController Controller { get; protected set; }
 
         [SerializeField]
+        SimpleHPView _hpView;
+		public IHPView HPView { get; protected set; }
+        [SerializeField]
         WeaponBase _temporaryWeapon;
 		public IWeapon Weapon { get; protected set; }
 		public List<int> AttachmentCount { get; protected set; }
 		public List<int> RequiredExperiencePointList { get; protected set; }
+		public int MaxHP { get; protected set; }
 		public int HP { get; protected set; }
 		public float Attack { get; protected set; }
 		public float Speed { get; protected set; }
@@ -22,6 +26,7 @@ namespace YCG.Player
 		{
 			InitializeList ();
 			InitializeParameter ();
+            HPView = _hpView;
             SetWeapon(_temporaryWeapon);
 		}
 
@@ -42,6 +47,7 @@ namespace YCG.Player
             Controller.Self = this;
 
 			var param = Google2u.Player.Instance.GetRow (0);
+			MaxHP = param._HP;
 			HP = param._HP;
 			Attack = param._Attack;
 			Speed = param._Speed;
@@ -60,8 +66,8 @@ namespace YCG.Player
 
 		public virtual void Damage(int damage)
 		{
-			HP -= damage;
-            if (HP < 0)
+            SetHP(HP - damage);
+            if (HP <= 0)
             {
                 Death();
             }
@@ -69,7 +75,13 @@ namespace YCG.Player
 
 		public virtual void Recover(int recover)
 		{
-			HP += recover;
+            SetHP(HP + recover);
 		}
+
+        private void SetHP(int value)
+        {
+            HP = value;
+            HPView.SetHPValue(HP, MaxHP);
+        }
 	}
 }

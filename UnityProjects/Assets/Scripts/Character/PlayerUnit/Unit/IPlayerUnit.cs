@@ -7,6 +7,7 @@ namespace YCG.Player
 	{
 		MyPlayerController Controller { get; }
 		
+		IHPView HPView { get; }
 		IWeapon Weapon { get; }
 		List<int> AttachmentCount { get; }
 		List<int> RequiredExperiencePointList { get; }

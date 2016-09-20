@@ -18,7 +18,7 @@ namespace YCG
 		public virtual void Damage(int damage)
 		{
 			HP -= damage;
-            if (HP < 0)
+            if (HP <= 0)
             {
                 Death();
             }
