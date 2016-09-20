@@ -55,12 +55,16 @@ namespace YCG.Player
 
 		public virtual void Death()
 		{
-			Destroy (gameObject);
+            GameManager.instance.OnPlayerDeath();
 		}
 
 		public virtual void Damage(int damage)
 		{
 			HP -= damage;
+            if (HP < 0)
+            {
+                Death();
+            }
 		}
 
 		public virtual void Recover(int recover)
