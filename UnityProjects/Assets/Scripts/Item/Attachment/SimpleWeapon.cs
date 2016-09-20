@@ -5,7 +5,6 @@ namespace YCG.Attachment
 {
 	public class SimpleWeapon : WeaponBase
 	{
-		[SerializeField]
 		BulletBase _bullet;
 
 		protected override void OnAwake ()
@@ -19,7 +18,7 @@ namespace YCG.Attachment
 		public override void OnInvoke (AttachmentArgs args)
 		{
 			base.OnInvoke (args);
-			var bullet = Instantiate (_bullet, transform.position, _bullet.transform.rotation) as IBullet;
+            var bullet = BulletManager.instance.GetStraightBullet(transform.position);
             bullet.SetBulletInfo( Vector3.ProjectOnPlane(transform.up, Vector3.up).normalized, Range );
             if (_owner is PlayerUnitBase)
             {
