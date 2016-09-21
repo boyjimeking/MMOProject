@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 namespace YCG
@@ -6,7 +7,7 @@ namespace YCG
     public class SimpleHPView : MonoBehaviour, IHPView
     {
         [SerializeField]
-        SpriteRenderer _hpBar;
+        Image _hpBar;
 
         public void SetHPValue(float ratio)
         {
