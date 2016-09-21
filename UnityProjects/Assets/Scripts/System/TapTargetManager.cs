@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.EventSystems;
 using YCG.YCInput;
 using UnityEngine.Events;
+
 
 namespace YCG
 {
@@ -45,6 +46,11 @@ namespace YCG
 
         void Update()
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+
 			if (YCGInput.TapDown) {
 			    Vector2 tapPos = YCGInput.TapPosition;
                 //ターゲット取るか移動か
