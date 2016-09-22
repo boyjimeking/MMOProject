@@ -6,5 +6,6 @@ namespace YCG.Player
 	{
         IPlayerUnit Self { get; set; }
 		Transform transform { get; }
+        Vector3 MoveDir { get; }
 	}
 }

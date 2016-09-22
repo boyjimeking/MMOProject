@@ -19,15 +19,22 @@ namespace YCG.Attachment
 		{
 			base.OnInvoke (args);
             var bullet = BulletManager.instance.GetStraightBullet(transform.position);
-            bullet.SetBulletInfo( Vector3.ProjectOnPlane(transform.up, Vector3.up).normalized, Range );
             if (_owner is PlayerUnitBase)
             {
                 var player = _owner as PlayerUnitBase;
                 var target = TapTargetManager.instance.TargetEnemy;
                 if (target != null)
                 {
-                    bullet.SetBulletInfo( (target.transform.position - transform.position).normalized, Range );
+                    bullet.SetBulletInfo((target.transform.position - transform.position).normalized, Range);
                 }
+                else
+                {
+                    bullet.SetBulletInfo( player.MoveDir, Range );
+                }
+            }
+            else
+            {
+                bullet.SetBulletInfo( Vector3.ProjectOnPlane(transform.up, Vector3.up).normalized, Range );
             }
             bullet.Owner = _owner;
 		}

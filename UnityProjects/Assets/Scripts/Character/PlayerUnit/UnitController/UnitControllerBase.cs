@@ -8,6 +8,7 @@ namespace YCG.Player
 	public abstract class UnitControllerBase : AbstractMonoBehaviour, IPlayerUnitController 
 	{
         public IPlayerUnit Self { get; set; }
+        public Vector3 MoveDir { get; protected set; }
 
 		Tweener _moveTwinner;
 
@@ -18,6 +19,7 @@ namespace YCG.Player
 				_moveTwinner.Kill ();
 			}
 			float dist = Vector3.Distance (transform.position, to);
+            MoveDir = (to - transform.position).normalized;
 			_moveTwinner = transform.DOMove (to, 0.2f * dist).SetEase (Ease.Linear).OnComplete(()=>{
 				_moveTwinner = null;
 				onComplete();

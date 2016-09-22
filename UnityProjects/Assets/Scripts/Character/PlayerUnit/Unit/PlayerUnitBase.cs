@@ -7,6 +7,7 @@ namespace YCG.Player
 	public class PlayerUnitBase : MonoBehaviour, IPlayerUnit
 	{
 		public MyPlayerController Controller { get; protected set; }
+        public Vector3 MoveDir { get { return Controller.MoveDir; } }
 
         [SerializeField]
         SimpleHPView _hpView;
