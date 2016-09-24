@@ -34,7 +34,6 @@ namespace YCG
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    var bullet = BulletManager.instance.GetStraightBullet(transform.position);
                     var param = new BulletParam()
                     {
                         Power = 50,
@@ -42,8 +41,7 @@ namespace YCG
                         Range = 20f,
                         Direction = Quaternion.AngleAxis(i * 45, Vector3.up) * Vector3.forward
                     };
-                    bullet.SetBulletInfo(param);
-                    bullet.Owner = this;
+                    BulletManager.instance.ShotStraightBullet(param, this, transform.position);
                 }
                 _elapsedTime = 0f;
             }

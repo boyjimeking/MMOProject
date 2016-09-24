@@ -23,5 +23,12 @@ namespace YCG
         {
             return Instantiate(_straightBullet, position, _straightBullet.transform.rotation) as IBullet;
         }
+
+        public void ShotStraightBullet(BulletParam param, ICharacterUnit owner, Vector3 pos)
+        {
+            var bullet = GetStraightBullet(pos);
+            bullet.SetBulletInfo(param);
+            bullet.Owner = owner;
+        }
     }
 }

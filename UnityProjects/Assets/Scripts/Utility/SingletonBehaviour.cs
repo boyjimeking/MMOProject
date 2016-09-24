@@ -11,16 +11,9 @@ public abstract class SingletonBehaviour<Interface> : MonoBehaviour
     {
         System.Diagnostics.Debug.Assert(this is Interface);
 
-        if (_instance == null)
-        {
-            _instance = this as Interface;
-            DontDestroyOnLoad(gameObject);
-            OnAwake();
-        }
-        else
-        {
-            DestroyImmediate(this);
-        }
+        _instance = this as Interface;
+        //DontDestroyOnLoad(gameObject);
+        OnAwake();
     }
 
     protected virtual void OnAwake()

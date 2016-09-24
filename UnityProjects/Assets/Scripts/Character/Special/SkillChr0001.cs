@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using YCG.Player;
+﻿using YCG.Attachment;
 
 namespace YCG
 {
@@ -20,7 +19,14 @@ namespace YCG
             CreateTargetList();
             if (Target != null)
             {
-                Target.Death();
+                var param = new BulletParam()
+                {
+                    Power = 10000,
+                    Speed = 100f,
+                    Range = 50f,
+                    Direction = (Target.Trans.position - Owner.Trans.position).normalized
+                };
+                BulletManager.instance.ShotStraightBullet(param, Owner, Owner.Trans.position);
             }
         }
 
