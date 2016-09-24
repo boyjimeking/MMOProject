@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using YCG.Attachment;
 
 namespace YCG
 {
@@ -31,10 +32,17 @@ namespace YCG
             _elapsedTime += Time.deltaTime;
             if (_elapsedTime > 2f)
             {
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < 8; i++)
                 {
                     var bullet = BulletManager.instance.GetStraightBullet(transform.position);
-                    bullet.SetBulletInfo(Quaternion.AngleAxis(i*90, Vector3.up) * Vector3.forward, 20f);
+                    var param = new BulletParam()
+                    {
+                        Power = 50,
+                        Speed = 10f,
+                        Range = 20f,
+                        Direction = Quaternion.AngleAxis(i * 45, Vector3.up) * Vector3.forward
+                    };
+                    bullet.SetBulletInfo(param);
                     bullet.Owner = this;
                 }
                 _elapsedTime = 0f;

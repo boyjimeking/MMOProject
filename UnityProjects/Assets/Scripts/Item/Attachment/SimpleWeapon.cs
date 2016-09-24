@@ -19,23 +19,30 @@ namespace YCG.Attachment
 		{
 			base.OnInvoke (args);
             var bullet = BulletManager.instance.GetStraightBullet(transform.position);
+            BulletParam param = new BulletParam()
+            {
+                Power = (int)(50 * _owner.Attack),
+                Speed = 10f,
+                Range = Range,
+            };
             if (_owner is IPlayerUnit)
             {
                 var player = _owner as IPlayerUnit;
                 var target = TapTargetManager.instance.TargetEnemy;
                 if (target != null)
                 {
-                    bullet.SetBulletInfo((target.Trans.position - transform.position).normalized, Range);
+                    param.Direction = (target.Trans.position - transform.position).normalized;
                 }
                 else
                 {
-                    bullet.SetBulletInfo( player.MoveDir, Range );
+                    param.Direction = player.MoveDir;
                 }
             }
             else
             {
-                bullet.SetBulletInfo( Vector3.ProjectOnPlane(transform.up, Vector3.up).normalized, Range );
+                param.Direction = Vector3.ProjectOnPlane(transform.up, Vector3.up).normalized;
             }
+            bullet.SetBulletInfo(param);
             bullet.Owner = _owner;
 		}
 	}

@@ -6,39 +6,29 @@ namespace YCG.Attachment
 {
 	public abstract class BulletBase : AbstractMonoBehaviour, IBullet
 	{
-		[SerializeField]
-		int _power = 2;
-		[SerializeField]
-		float _speed = 10f;
         float _elapsedTime = 0f;
 
-		public int Power { get; private set; }
-		public float Speed { get; private set; }
-		public float LifeTime { get; private set; }
-		public Vector3 Direction { get; private set; }
+		public BulletParam Param { get; private set; }
 		public ICharacterUnit Owner { get; set; }
 
 		protected override void OnAwake ()
 		{
 			base.OnAwake ();
-			Power = _power;
-			Speed = _speed;
 		}
 
 		protected override void OnUpdate ()
 		{
 			base.OnUpdate ();
-            if (_elapsedTime > LifeTime)
+            if (_elapsedTime > Param.LifeTime)
             {
                 Destroy(gameObject);
             }
             _elapsedTime += Time.deltaTime;
 		}
 
-        public void SetBulletInfo(Vector3 dir, float range)
+        public void SetBulletInfo(BulletParam param)
         {
-            Direction = dir;
-            LifeTime = range / Speed;
+            Param = param;
         }
 
         void OnTriggerEnter(Collider hitCol)
@@ -84,13 +74,13 @@ namespace YCG.Attachment
 
         protected virtual void OnHitBarrier(Barrier barrier)
         {
-            barrier.OnHitBullet(Power);
+            barrier.OnHitBullet(Param.Power);
             Destroy(gameObject);
         }
 
 		protected virtual void OnHitBullet (ICharacterUnit hitUnit)
 		{
-            hitUnit.Damage(Power);
+            hitUnit.Damage(Param.Power);
             Destroy(gameObject);
 		}
 

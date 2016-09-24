@@ -8,7 +8,7 @@ namespace YCG.Attachment
 		protected override void OnUpdate ()
 		{
 			base.OnUpdate ();
-			transform.position += Time.deltaTime * Speed * Direction;
+			transform.position += Time.deltaTime * Param.Speed * Param.Direction;
 		}
 	}
 }
