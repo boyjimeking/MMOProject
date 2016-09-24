@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using YCG;
 using YCG.Player;
 
 namespace YCG.Attachment
@@ -40,25 +41,58 @@ namespace YCG.Attachment
             LifeTime = range / Speed;
         }
 
+        void OnTriggerEnter(Collider hitCol)
+        {
+            if (Owner == null)
+                return;
+
+            var barrier = hitCol.GetComponent<Barrier>();
+            if (HitBarrier(barrier))
+                return;
+
+            var character = hitCol.GetComponent<ICharacterUnit>();
+            HitCharacter(character);
+
+        }
+
+        private bool HitBarrier(Barrier barrier)
+        {
+            if (barrier == null)
+                return false;
+
+            if (Owner is IEnemyUnit)
+            {
+                OnHitBarrier(barrier);
+                return true;
+            }
+            return false;
+        }
+
+        private bool HitCharacter(ICharacterUnit character)
+        {
+            if (character == null)
+                return false;
+
+            if (Owner is IEnemyUnit && character is IPlayerUnit
+                || Owner is IPlayerUnit && character is IEnemyUnit)
+            {
+                OnHitBullet(character);
+                return true;
+            }
+            return false;
+        }
+
+        protected virtual void OnHitBarrier(Barrier barrier)
+        {
+            barrier.OnHitBullet(Power);
+            Destroy(gameObject);
+        }
+
 		protected virtual void OnHitBullet (ICharacterUnit hitUnit)
 		{
             hitUnit.Damage(Power);
             Destroy(gameObject);
 		}
 
-        void OnTriggerEnter(Collider hitCol)
-        {
-            var character = hitCol.GetComponent<ICharacterUnit>();
-            if (Owner == null)
-                return;
-            if (character == null)
-                return;
-
-            if (Owner is IEnemyUnit && character is IPlayerUnit
-                || Owner is IPlayerUnit && character is IEnemyUnit)
-            {
-                OnHitBullet(character);
-            }
-        }
 	}
 }

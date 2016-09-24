@@ -4,32 +4,35 @@ namespace YCG
 {
     public static class SpecialSkillFactory
     {
-        private static readonly float CoolTime0001 = 5f;
-        private static readonly float CoolTime0002 = 5f;
-        private static readonly float CoolTime0003 = 5f;
-        private static readonly float CoolTime0004 = 5f;
-        private static readonly float CoolTime0005 = 5f;
-        private static readonly float CoolTime0006 = 5f;
-
         public static ISpecialSkill CreateSkill(Google2u.Player.rowIds id)
         {
+            ISpecialSkill skill;
             switch (id)
             {
                 case Google2u.Player.rowIds.chr0001:
-                    return new SkillChr0001(CoolTime0001);
+                    skill = new SkillChr0001();
+                    break;
                 case Google2u.Player.rowIds.chr0002:
-                    return new SkillChr0002(CoolTime0002);
+                    skill = new SkillChr0002();
+                    break;
                 case Google2u.Player.rowIds.chr0003:
-                    return new SkillChr0003(CoolTime0003);
+                    skill = new SkillChr0003();
+                    break;
                 case Google2u.Player.rowIds.chr0004:
-                    return new SkillChr0004(CoolTime0004);
+                    skill = new SkillChr0004();
+                    break;
                 case Google2u.Player.rowIds.chr0005:
-                    return new SkillChr0005(CoolTime0005);
+                    skill = new SkillChr0005();
+                    break;
                 case Google2u.Player.rowIds.chr0006:
-                    return new SkillChr0006(CoolTime0006);
+                    skill = new SkillChr0006();
+                    break;
                 default:
-                    return new SkillChr0001(CoolTime0001);
+                    skill = new SkillChr0001();
+                    break;
             }
+            skill.Initialize();
+            return skill;
         }
     }
 }

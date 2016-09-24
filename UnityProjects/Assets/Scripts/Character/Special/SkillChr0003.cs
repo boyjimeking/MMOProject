@@ -1,31 +1,25 @@
-﻿using System.Collections.Generic;
-using YCG.Player;
+﻿using UnityEngine;
 
 namespace YCG
 {
     public class SkillChr0003 : SpecialSkillBase
     {
+        private readonly float SkillCoolTime = 20f;
         public IEnemyUnit Target { get; private set; }
+        private Barrier _barrier;
 
-        public SkillChr0003(float coolTime) : base(coolTime) { }
+        public override void Initialize()
+        {
+            base.Initialize();
+            CoolTime = SkillCoolTime;
+            _barrier = Resources.Load<Barrier>("Prefabs/Skill/Barrier");
+        }
 
         protected override void OnInvoke()
         {
             base.OnInvoke();
-            CreateTargetList();
-            if (Target != null)
-            {
-                Target.Death();
-            }
-        }
-
-        private void CreateTargetList()
-        {
-            Target = TapTargetManager.instance.TargetEnemy;
-            if (Target == null)
-            {
-                Target = EnemyManager.instance.GetNearestEnemy(Owner.Trans.position);
-            }
+            var barrier = GameObject.Instantiate(_barrier, Owner.Trans.position, _barrier.transform.rotation) as Barrier;
+            barrier.transform.SetParent(Owner.Trans);
         }
     }
 }

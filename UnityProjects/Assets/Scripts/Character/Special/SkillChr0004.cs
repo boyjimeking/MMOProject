@@ -5,9 +5,14 @@ namespace YCG
 {
     public class SkillChr0004 : SpecialSkillBase
     {
+        private readonly float SkillCoolTime = 5f;
         public IEnemyUnit Target { get; protected set; }
 
-        public SkillChr0004(float coolTime) : base(coolTime) { }
+        public override void Initialize()
+        {
+            base.Initialize();
+            CoolTime = SkillCoolTime;
+        }
 
         protected override void OnInvoke()
         {

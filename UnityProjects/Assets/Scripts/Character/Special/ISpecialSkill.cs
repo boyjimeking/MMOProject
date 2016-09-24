@@ -8,6 +8,7 @@ namespace YCG
         IPlayerUnit Owner { get; set; }
         float RemainingTime { get; }
 
+        void Initialize();
         void InvokeSkill();
         void AdvanceCoolTime(float timeScale = 1f);
     }

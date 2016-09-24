@@ -5,13 +5,14 @@ namespace YCG
 {
     public abstract class SpecialSkillBase : ISpecialSkill
     {
+        private readonly float BaseCoolTime = 5f;
         public IPlayerUnit Owner { get; set; }
         public float RemainingTime { get; private set; }
-        public float CoolTime { get; private set; }
+        public float CoolTime { get; protected set; }
 
-        public SpecialSkillBase(float coolTime)
+        public virtual void Initialize()
         {
-            CoolTime = coolTime;
+            CoolTime = BaseCoolTime;
         }
 
         public void InvokeSkill()

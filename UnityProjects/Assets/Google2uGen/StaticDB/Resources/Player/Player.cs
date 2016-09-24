@@ -186,7 +186,7 @@ namespace Google2u
 		{
 			Rows.Add( new PlayerRow("chr0001", "Brave", "chr0001", "500", "1", "5", "1", "10", "0"));
 			Rows.Add( new PlayerRow("chr0002", "Magician", "chr0002", "300", "0.7", "4", "0.8", "20", "1"));
-			Rows.Add( new PlayerRow("chr0003", "Guardian", "chr0003", "1000", "1.5", "1", "2", "10", "2"));
+			Rows.Add( new PlayerRow("chr0003", "Guardian", "chr0003", "1000", "1.5", "1.5", "1.5", "10", "2"));
 			Rows.Add( new PlayerRow("chr0004", "BeastMaster", "chr0004", "400", "0.5", "8", "0.8", "5", "3"));
 			Rows.Add( new PlayerRow("chr0005", "Suporter", "chr0005", "300", "0.3", "6", "1", "25", "4"));
 			Rows.Add( new PlayerRow("chr0006", "Novelty", "chr0006", "200", "0.3", "3", "1", "10", "5"));
