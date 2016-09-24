@@ -41,6 +41,22 @@ namespace YCG
             return _enemyList[index];
         }
 
+        public List<IEnemyUnit> GetInRangeEnemys(Vector3 pos, float range)
+        {
+            List<IEnemyUnit> enemys = new List<IEnemyUnit>();
+
+            for (int i = 0; i < _enemyList.Count; i++)
+            {
+                var enemy = _enemyList[i];
+                float sqrDist = (enemy.Trans.position - pos).sqrMagnitude;
+                if (sqrDist < range * range)
+                {
+                    enemys.Add(enemy);
+                }
+            }
+            return enemys;
+        }
+
         #endregion
 
         #region Event
