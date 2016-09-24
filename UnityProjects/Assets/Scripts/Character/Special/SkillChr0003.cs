@@ -3,7 +3,7 @@ using YCG.Player;
 
 namespace YCG
 {
-    public class SimpleSpecialSkill : ISpecialSkill
+    public class SkillChr0003 : ISpecialSkill
     {
         public IPlayerUnit Owner { get; set; }
         public IEnemyUnit Target { get; private set; }

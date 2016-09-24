@@ -21,7 +21,8 @@ namespace Google2u
 		public float _Speed;
 		public float _Size;
 		public int _Heal;
-		public PlayerRow(string __ID, string __Name, string __Path, string __HP, string __Attack, string __Speed, string __Size, string __Heal) 
+		public int _Skill;
+		public PlayerRow(string __ID, string __Name, string __Path, string __HP, string __Attack, string __Speed, string __Size, string __Heal, string __Skill) 
 		{
 			_Name = __Name.Trim();
 			_Path = __Path.Trim();
@@ -60,9 +61,16 @@ namespace Google2u
 				else
 					Debug.LogError("Failed To Convert _Heal string: "+ __Heal +" to int");
 			}
+			{
+			int res;
+				if(int.TryParse(__Skill, NumberStyles.Any, CultureInfo.InvariantCulture, out res))
+					_Skill = res;
+				else
+					Debug.LogError("Failed To Convert _Skill string: "+ __Skill +" to int");
+			}
 		}
 
-		public int Length { get { return 7; } }
+		public int Length { get { return 8; } }
 
 		public string this[int i]
 		{
@@ -98,6 +106,9 @@ namespace Google2u
 				case 6:
 					ret = _Heal.ToString();
 					break;
+				case 7:
+					ret = _Skill.ToString();
+					break;
 			}
 
 			return ret;
@@ -129,6 +140,9 @@ namespace Google2u
 				case "Heal":
 					ret = _Heal.ToString();
 					break;
+				case "Skill":
+					ret = _Skill.ToString();
+					break;
 			}
 
 			return ret;
@@ -143,6 +157,7 @@ namespace Google2u
 			ret += "{" + "Speed" + " : " + _Speed.ToString() + "} ";
 			ret += "{" + "Size" + " : " + _Size.ToString() + "} ";
 			ret += "{" + "Heal" + " : " + _Heal.ToString() + "} ";
+			ret += "{" + "Skill" + " : " + _Skill.ToString() + "} ";
 			return ret;
 		}
 	}
@@ -169,12 +184,12 @@ namespace Google2u
 
 		private Player()
 		{
-			Rows.Add( new PlayerRow("chr0001", "Brave", "chr0001", "500", "1", "5", "1", "10"));
-			Rows.Add( new PlayerRow("chr0002", "Magician", "chr0002", "300", "0.7", "4", "0.8", "20"));
-			Rows.Add( new PlayerRow("chr0003", "Guardian", "chr0003", "1000", "1.5", "1", "3", "10"));
-			Rows.Add( new PlayerRow("chr0004", "BeastMaster", "chr0004", "400", "0.5", "8", "0.8", "5"));
-			Rows.Add( new PlayerRow("chr0005", "Suporter", "chr0005", "300", "0.3", "6", "1", "25"));
-			Rows.Add( new PlayerRow("chr0006", "Novelty", "chr0006", "200", "0.3", "3", "1", "10"));
+			Rows.Add( new PlayerRow("chr0001", "Brave", "chr0001", "500", "1", "5", "1", "10", "0"));
+			Rows.Add( new PlayerRow("chr0002", "Magician", "chr0002", "300", "0.7", "4", "0.8", "20", "1"));
+			Rows.Add( new PlayerRow("chr0003", "Guardian", "chr0003", "1000", "1.5", "1", "2", "10", "2"));
+			Rows.Add( new PlayerRow("chr0004", "BeastMaster", "chr0004", "400", "0.5", "8", "0.8", "5", "3"));
+			Rows.Add( new PlayerRow("chr0005", "Suporter", "chr0005", "300", "0.3", "6", "1", "25", "4"));
+			Rows.Add( new PlayerRow("chr0006", "Novelty", "chr0006", "200", "0.3", "3", "1", "10", "5"));
 		}
 		public IGoogle2uRow GetGenRow(string in_RowString)
 		{

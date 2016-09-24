@@ -26,7 +26,7 @@ namespace YCG.Player
 			}
 			float dist = Vector3.Distance (transform.position, to);
             MoveDir = (to - transform.position).normalized;
-			_moveTwinner = transform.DOMove (to, 0.2f * dist).SetEase (Ease.Linear).OnComplete(()=>{
+			_moveTwinner = transform.DOMove (to, dist / Self.Speed).SetEase (Ease.Linear).OnComplete(()=>{
 				_moveTwinner = null;
 				onComplete();
 			});

@@ -12,6 +12,8 @@ namespace YCG.Player
         public Vector3 MoveDir { get { return Controller.MoveDir; } }
 
         [SerializeField]
+        Google2u.Player.rowIds _id;
+        [SerializeField]
         SimpleHPView _hpView;
 		public IHPView HPView { get; protected set; }
         [SerializeField]
@@ -22,6 +24,7 @@ namespace YCG.Player
 		public List<int> RequiredExperiencePointList { get; protected set; }
 		public int MaxHP { get; protected set; }
 		public int HP { get; protected set; }
+        public int Heal { get; protected set; }
 		public float Attack { get; protected set; }
 		public float Speed { get; protected set; }
 		public float Size { get; protected set; }
@@ -50,16 +53,22 @@ namespace YCG.Player
 			else
 				Controller = attachedController;
             Controller.Self = this;
-            Skill = new SimpleSpecialSkill();
-            Skill.Owner = this;
+            ResetParamter();
+		}
 
-			var param = Google2u.Player.Instance.GetRow (0);
+        public void ResetParamter()
+        {
+			var param = Google2u.Player.Instance.GetRow (_id);
 			MaxHP = param._HP;
 			HP = param._HP;
+            Heal = param._Heal;
 			Attack = param._Attack;
 			Speed = param._Speed;
 			Size = param._Size;
-		}
+            Trans.localScale = Size * Vector3.one;
+            Skill = SpecialSkillFactory.CreateSkill(_id);
+            Skill.Owner = this;
+        }
 
 		public virtual void SetWeapon(IWeapon weapon)
 		{
@@ -95,6 +104,14 @@ namespace YCG.Player
         {
             HP = value;
             HPView.SetHPValue(HP, MaxHP);
+        }
+
+        //For Debug
+        public void ChangeNextCharacter()
+        {
+            int count = System.Enum.GetValues(typeof(Google2u.Player.rowIds)).Length;
+            _id = (Google2u.Player.rowIds)Mathf.Repeat((int)_id + 1, count);
+            ResetParamter();
         }
 	}
 }

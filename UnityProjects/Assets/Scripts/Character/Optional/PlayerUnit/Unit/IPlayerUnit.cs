@@ -10,6 +10,7 @@ namespace YCG.Player
 		MyPlayerController Controller { get; }
         Vector3 MoveDir { get; }
 		
+        int Heal { get; }
 		IHPView HPView { get; }
 		IWeapon Weapon { get; }
         ISpecialSkill Skill { get; }
