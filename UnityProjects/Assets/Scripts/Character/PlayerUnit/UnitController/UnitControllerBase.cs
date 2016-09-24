@@ -12,6 +12,12 @@ namespace YCG.Player
 
 		Tweener _moveTwinner;
 
+		protected override void OnAwake ()
+		{
+			base.OnAwake ();
+            MoveDir = new Vector3(-1,0,1).normalized;
+		}
+
 		protected void MoveTo(Vector3 to, Action onComplete)
 		{
 			if (_moveTwinner != null)

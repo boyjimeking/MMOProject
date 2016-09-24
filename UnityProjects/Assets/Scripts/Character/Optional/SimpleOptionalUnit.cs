@@ -51,12 +51,12 @@ namespace YCG
 
             //Reset
             _attackWaitTime -= Time.deltaTime;
-            _targetUnit = TapTargetManager.instance.TargetEnemy;
+            _targetUnit = TapTargetManager.instance.TargetEnemy as EnemyUnitBase;
         }
 
         private void ChaseTarget()
         {
-            Vector3 targetDir = _targetUnit.transform.position - transform.position;
+            Vector3 targetDir = _targetUnit.Trans.position - transform.position;
             Vector3 dir = targetDir.normalized;
             float sqrDist = targetDir.sqrMagnitude;
             if (sqrDist > _attackRange * _attackRange)

@@ -6,6 +6,8 @@ namespace YCG.Player
 {
 	public class PlayerUnitBase : MonoBehaviour, IPlayerUnit
 	{
+		public Transform Trans { get; private set; }
+        public GameObject Obj { get; private set; }
 		public MyPlayerController Controller { get; protected set; }
         public Vector3 MoveDir { get { return Controller.MoveDir; } }
 
@@ -15,6 +17,7 @@ namespace YCG.Player
         [SerializeField]
         WeaponBase _temporaryWeapon;
 		public IWeapon Weapon { get; protected set; }
+        public ISpecialSkill Skill { get; protected set; }
 		public List<int> AttachmentCount { get; protected set; }
 		public List<int> RequiredExperiencePointList { get; protected set; }
 		public int MaxHP { get; protected set; }
@@ -37,15 +40,18 @@ namespace YCG.Player
 			RequiredExperiencePointList = new List<int> ();
 		}
 
-		//FIXME:Debug
 		public void InitializeParameter()
 		{
+            Trans = transform;
+            Obj = gameObject;
 			var attachedController = GetComponent<MyPlayerController> ();
 			if (attachedController == null)
 				Controller = gameObject.AddComponent<MyPlayerController> ();
 			else
 				Controller = attachedController;
             Controller.Self = this;
+            Skill = new SimpleSpecialSkill();
+            Skill.Owner = this;
 
 			var param = Google2u.Player.Instance.GetRow (0);
 			MaxHP = param._HP;
@@ -59,6 +65,12 @@ namespace YCG.Player
 		{
             Weapon = weapon;
 		}
+
+        public virtual void InvokeSkill()
+        {
+            if (Skill != null)
+                Skill.InvokeSkill();
+        }
 
 		public virtual void Death()
 		{

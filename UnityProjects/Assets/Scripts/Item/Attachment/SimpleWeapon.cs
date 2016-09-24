@@ -19,13 +19,13 @@ namespace YCG.Attachment
 		{
 			base.OnInvoke (args);
             var bullet = BulletManager.instance.GetStraightBullet(transform.position);
-            if (_owner is PlayerUnitBase)
+            if (_owner is IPlayerUnit)
             {
-                var player = _owner as PlayerUnitBase;
+                var player = _owner as IPlayerUnit;
                 var target = TapTargetManager.instance.TargetEnemy;
                 if (target != null)
                 {
-                    bullet.SetBulletInfo((target.transform.position - transform.position).normalized, Range);
+                    bullet.SetBulletInfo((target.Trans.position - transform.position).normalized, Range);
                 }
                 else
                 {

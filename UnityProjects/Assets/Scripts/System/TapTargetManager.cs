@@ -11,7 +11,7 @@ namespace YCG
 		[SerializeField]
 		private SpriteRenderer _debugMarker;
 
-        public EnemyUnitBase TargetEnemy { get; private set; }
+        public IEnemyUnit TargetEnemy { get; private set; }
         public Vector3 MoveTargetPos { get; private set; }
 
         public UnityEvent ChangeAttackTargetEvent { get; set; }
@@ -28,21 +28,30 @@ namespace YCG
         {
             if (TargetEnemy != null)
             {
-                TargetEnemy.GetComponentInChildren<SpriteRenderer>().color = Color.white;
+                TargetEnemy.Obj.GetComponentInChildren<SpriteRenderer>().color = Color.white;
                 TargetEnemy = null;
             }
         }
 
-        private void SetTargetEnemy(EnemyUnitBase enemy)
+        private void SetTargetEnemy(IEnemyUnit enemy)
         {
             ResetTargetEnemy();
             if (enemy != TargetEnemy)
             {
                 TargetEnemy = enemy;
-                TargetEnemy.GetComponentInChildren<SpriteRenderer>().color = Color.red;
+                TargetEnemy.Obj.GetComponentInChildren<SpriteRenderer>().color = Color.red;
                 ChangeAttackTargetEvent.Invoke();
             }
         }
+
+        public void OnDestroyEnemy(IEnemyUnit enemy)
+        {
+            if (TargetEnemy == enemy)
+            {
+                TargetEnemy = null;
+            }
+        }
+
 
         void Update()
         {

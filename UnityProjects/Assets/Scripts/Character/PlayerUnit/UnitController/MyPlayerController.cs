@@ -22,7 +22,7 @@ namespace YCG.Player
 
         private void OnChangeAttackTarget()
         {
-            Vector3 targetPos = TapTargetManager.instance.TargetEnemy.transform.position;
+            Vector3 targetPos = TapTargetManager.instance.TargetEnemy.Trans.position;
             Vector3 myPos = transform.position;
             Vector3 diff = targetPos - myPos;
             float dist = diff.magnitude;
@@ -39,7 +39,7 @@ namespace YCG.Player
             if (enemy == null)
                 return;
 
-            Vector3 targetPos = enemy.transform.position;
+            Vector3 targetPos = enemy.Trans.position;
             Vector3 myPos = transform.position;
             float sqrDist = (targetPos - myPos).sqrMagnitude;
             if (sqrDist > Self.Weapon.Range * Self.Weapon.Range)

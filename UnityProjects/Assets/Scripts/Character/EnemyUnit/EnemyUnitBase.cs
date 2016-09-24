@@ -5,14 +5,26 @@ namespace YCG
 {
 	public abstract class EnemyUnitBase : AbstractMonoBehaviour, IEnemyUnit
 	{
+        public Transform Trans { get; private set; }
+        public GameObject Obj { get; private set; }
+
 		public int HP { get; protected set; }
 		public float Attack { get; protected set; }
 		public float Speed { get; protected set; }
 		public float Size { get; protected set; }
 
-		public virtual void Death()
+        protected override void OnAwake()
+        {
+            base.OnAwake();
+            Trans = transform;
+            Obj = gameObject;
+        }
+
+        public virtual void Death()
 		{
-			Destroy (gameObject);
+            EnemyManager.instance.OnDeathEnemy(this);
+            TapTargetManager.instance.OnDestroyEnemy(this);
+			Destroy (Obj);
 		}
 
 		public virtual void Damage(int damage)
