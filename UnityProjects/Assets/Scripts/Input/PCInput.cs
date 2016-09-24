@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace YCG.YCInput
 {
@@ -25,6 +26,13 @@ namespace YCG.YCInput
 			get
 			{
 				return Input.GetMouseButtonUp (0);
+			}
+		}
+
+		public bool TapAnyUGUI { 
+			get
+			{
+                return EventSystem.current.IsPointerOverGameObject();
 			}
 		}
 

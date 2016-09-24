@@ -55,7 +55,7 @@ namespace YCG
 
         void Update()
         {
-            if (EventSystem.current.IsPointerOverGameObject())
+            if (YCGInput.TapAnyUGUI)
             {
                 return;
             }

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 namespace YCG.YCInput
 {
@@ -22,6 +21,8 @@ namespace YCG.YCInput
 		public static bool Tap { get { return _input.Tap; } }
 
 		public static bool TapUp { get { return _input.TapUp; } }
+
+		public static bool TapAnyUGUI { get { return _input.TapAnyUGUI; } }
 
 		public static Vector2 TapPosition {	get { return _input.TapPosition; } }
 	}

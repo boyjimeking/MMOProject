@@ -7,6 +7,7 @@ namespace YCG.YCInput
 		bool TapDown { get; }
 		bool Tap { get; }
 		bool TapUp { get; }
+		bool TapAnyUGUI { get; }
 		Vector2 TapPosition { get; }
 	}
 }

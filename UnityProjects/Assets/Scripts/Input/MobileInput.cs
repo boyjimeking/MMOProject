@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.EventSystems;
 
 namespace YCG.YCInput
 {
@@ -24,6 +24,13 @@ namespace YCG.YCInput
 			get
 			{
 				return IsValidTouchCount (1) && Input.GetTouch (0).phase == TouchPhase.Ended;
+			}
+		}
+
+		public bool TapAnyUGUI { 
+			get
+			{
+                return IsValidTouchCount(1) && EventSystem.current.IsPointerOverGameObject(0);
 			}
 		}
 
