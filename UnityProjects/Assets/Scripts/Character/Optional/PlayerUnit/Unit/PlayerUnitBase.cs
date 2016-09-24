@@ -29,7 +29,8 @@ namespace YCG.Player
 		public float Speed { get; protected set; }
 		public float Size { get; protected set; }
 
-		void Awake()
+        #region Mono Method
+        void Awake()
 		{
 			InitializeList ();
 			InitializeParameter ();
@@ -37,7 +38,16 @@ namespace YCG.Player
             SetWeapon(_temporaryWeapon);
 		}
 
-		public void InitializeList()
+        void Update()
+        {
+            if (Skill != null)
+            {
+                Skill.AdvanceCoolTime();
+            }
+        }
+        #endregion
+
+        public void InitializeList()
 		{
 			AttachmentCount = new List<int> ();
 			RequiredExperiencePointList = new List<int> ();

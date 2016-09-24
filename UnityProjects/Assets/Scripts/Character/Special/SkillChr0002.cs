@@ -3,27 +3,18 @@ using YCG.Player;
 
 namespace YCG
 {
-    public class SkillChr0002 : ISpecialSkill
+    public class SkillChr0002 : SpecialSkillBase
     {
-        public IPlayerUnit Owner { get; set; }
-        public IEnemyUnit Target { get; private set; }
+        public List<IEnemyUnit> Targets { get; private set; }
 
-        public void InvokeSkill()
-        {
-            CreateTargetList();
-            if (Target != null)
-            {
-                Target.Death();
-            }
-        }
+        public SkillChr0002(float coolTime) : base(coolTime) { }
 
-        private void CreateTargetList()
+        protected override void OnInvoke()
         {
-            Target = TapTargetManager.instance.TargetEnemy;
-            if (Target == null)
-            {
-                Target = EnemyManager.instance.GetNearestEnemy(Owner.Trans.position);
-            }
+            base.OnInvoke();
+            Targets = EnemyManager.instance.GetInRangeEnemys(Owner.Trans.position, 10);
+            foreach(var target in Targets)
+                target.Death();
         }
     }
 }

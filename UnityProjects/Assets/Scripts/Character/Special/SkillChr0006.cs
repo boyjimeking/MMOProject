@@ -3,13 +3,15 @@ using YCG.Player;
 
 namespace YCG
 {
-    public class SkillChr0006 : ISpecialSkill
+    public class SkillChr0006 : SpecialSkillBase
     {
-        public IPlayerUnit Owner { get; set; }
         public IEnemyUnit Target { get; private set; }
 
-        public void InvokeSkill()
+        public SkillChr0006(float coolTime) : base(coolTime) { }
+
+        protected override void OnInvoke()
         {
+            base.OnInvoke();
             CreateTargetList();
             if (Target != null)
             {
