@@ -8,20 +8,38 @@ namespace YCG.Attachment
 	{
         float _elapsedTime = 0f;
 
+        bool _enabled = true;
+        public bool Enabled {
+            get {
+                return _enabled;
+            }
+            set {
+                _enabled = value;
+                Obj.SetActive(value);
+                _elapsedTime = 0f;
+            }
+        }
+        public GameObject Obj { get; private set; }
+        public Transform Trans { get; private set; }
 		public BulletParam Param { get; private set; }
 		public ICharacterUnit Owner { get; set; }
 
 		protected override void OnAwake ()
 		{
 			base.OnAwake ();
+            Obj = gameObject;
+            Trans = transform;
 		}
 
 		protected override void OnUpdate ()
 		{
+            if (Enabled == false)
+                return;
+
 			base.OnUpdate ();
             if (_elapsedTime > Param.LifeTime)
             {
-                Destroy(gameObject);
+                Release();
             }
             _elapsedTime += Time.deltaTime;
 		}
@@ -75,14 +93,18 @@ namespace YCG.Attachment
         protected virtual void OnHitBarrier(Barrier barrier)
         {
             barrier.OnHitBullet(Param.Power);
-            Destroy(gameObject);
+            Release();
         }
 
 		protected virtual void OnHitBullet (ICharacterUnit hitUnit)
 		{
             hitUnit.Damage(Param.Power);
-            Destroy(gameObject);
+            Release();
 		}
 
+        private void Release()
+        {
+            BulletManager.instance.OnReleaseBullet(this);
+        }
 	}
 }

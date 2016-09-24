@@ -4,6 +4,9 @@ namespace YCG.Attachment
 {
 	public interface IBullet
 	{
+        bool Enabled { get; set; }
+        GameObject Obj { get; }
+        Transform Trans { get; }
         BulletParam Param { get; }
 		ICharacterUnit Owner { get; set; }
 
