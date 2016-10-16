@@ -25,7 +25,15 @@ namespace YCG.Player
             }
             var spawnUnit = _playerUnitList[(int)id];
             MyControlUnit = GameObject.Instantiate(spawnUnit, pos, spawnUnit.transform.rotation) as PlayerUnitBase;
+            MyControlUnit.SetController(ControlType.Self);
             GameManager.instance.CameraManager.SetTrackTarget(MyControlUnit.transform);
+        }
+
+        public enum ControlType
+        {
+            Self,
+            Network,
+            AI,
         }
     }
 }

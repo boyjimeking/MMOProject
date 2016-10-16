@@ -54,14 +54,30 @@ namespace YCG.Player
 		{
             Trans = transform;
             Obj = gameObject;
-			var attachedController = GetComponent<MyPlayerController> ();
-			if (attachedController == null)
-				Controller = gameObject.AddComponent<MyPlayerController> ();
-			else
-				Controller = attachedController;
-            Controller.Self = this;
             ResetParamter();
 		}
+
+        public void SetController(PlayerManager.ControlType type)
+        {
+			var attachedController = GetComponent<MyPlayerController> ();
+            if (attachedController != null)
+                DestroyImmediate(attachedController);
+
+            switch (type)
+            {
+                case PlayerManager.ControlType.Self:
+				    Controller = gameObject.AddComponent<MyPlayerController> ();
+                    break;
+                case PlayerManager.ControlType.Network:
+                    //TODO:Implement
+                    break;
+                case PlayerManager.ControlType.AI:
+                    //TODO:Implement
+                    break;
+            }
+
+            Controller.Self = this;
+        }
 
         public void ResetParamter()
         {

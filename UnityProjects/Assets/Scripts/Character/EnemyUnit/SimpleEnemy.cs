@@ -37,7 +37,7 @@ namespace YCG
                     var param = new BulletParam()
                     {
                         Power = 50,
-                        Speed = 10f,
+                        Speed = 5f,
                         Range = 20f,
                         Direction = Quaternion.AngleAxis(i * 45, Vector3.up) * Vector3.forward
                     };
