@@ -104,7 +104,7 @@ namespace YCG.Attachment
 
         private void Release()
         {
-            BulletManager.instance.OnReleaseBullet(this);
+            GameManager.instance.BulletManager.OnReleaseBullet(this);
         }
 	}
 }

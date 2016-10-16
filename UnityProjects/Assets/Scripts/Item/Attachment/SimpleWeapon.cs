@@ -18,7 +18,7 @@ namespace YCG.Attachment
 		public override void OnInvoke (AttachmentArgs args)
 		{
 			base.OnInvoke (args);
-            var bullet = BulletManager.instance.GetStraightBullet(transform.position);
+            var bullet = GameManager.instance.BulletManager.GetStraightBullet(transform.position);
             BulletParam param = new BulletParam()
             {
                 Power = (int)(50 * _owner.Attack),

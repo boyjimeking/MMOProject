@@ -26,7 +26,7 @@ namespace YCG
                     Range = 50f,
                     Direction = (Target.Trans.position - Owner.Trans.position).normalized
                 };
-                BulletManager.instance.ShotStraightBullet(param, Owner, Owner.Trans.position);
+                GameManager.instance.BulletManager.ShotStraightBullet(param, Owner, Owner.Trans.position);
             }
         }
 
@@ -35,7 +35,7 @@ namespace YCG
             Target = TapTargetManager.instance.TargetEnemy;
             if (Target == null)
             {
-                Target = EnemyManager.instance.GetNearestEnemy(Owner.Trans.position);
+                Target = GameManager.instance.EnemyManager.GetNearestEnemy(Owner.Trans.position);
             }
         }
     }

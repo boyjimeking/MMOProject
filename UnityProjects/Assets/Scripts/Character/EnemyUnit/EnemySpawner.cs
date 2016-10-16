@@ -27,7 +27,7 @@ namespace YCG
             {
                 Vector3 pos = new Vector3(Random.Range(-_spawnRect.x, _spawnRect.x), 0f, Random.Range(-_spawnRect.y, _spawnRect.y));
                 var enemy = Instantiate(_enemys[Random.Range(0, _enemys.Length)], pos, Quaternion.identity) as IEnemyUnit;
-                EnemyManager.instance.OnSpawnEnemy(enemy);
+                GameManager.instance.EnemyManager.OnSpawnEnemy(enemy);
                 _elapsedTime = 0f;
             }
         }

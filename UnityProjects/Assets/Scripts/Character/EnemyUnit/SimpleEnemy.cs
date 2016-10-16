@@ -41,7 +41,7 @@ namespace YCG
                         Range = 20f,
                         Direction = Quaternion.AngleAxis(i * 45, Vector3.up) * Vector3.forward
                     };
-                    BulletManager.instance.ShotStraightBullet(param, this, transform.position);
+                    GameManager.instance.BulletManager.ShotStraightBullet(param, this, transform.position);
                 }
                 _elapsedTime = 0f;
             }

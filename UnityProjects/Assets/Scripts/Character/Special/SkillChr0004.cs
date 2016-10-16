@@ -29,7 +29,7 @@ namespace YCG
             Target = TapTargetManager.instance.TargetEnemy;
             if (Target == null)
             {
-                Target = EnemyManager.instance.GetNearestEnemy(Owner.Trans.position);
+                Target = GameManager.instance.EnemyManager.GetNearestEnemy(Owner.Trans.position);
             }
         }
     }

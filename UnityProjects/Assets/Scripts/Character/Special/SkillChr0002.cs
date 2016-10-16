@@ -17,7 +17,7 @@ namespace YCG
         protected override void OnInvoke()
         {
             base.OnInvoke();
-            Targets = EnemyManager.instance.GetInRangeEnemys(Owner.Trans.position, 10);
+            Targets = GameManager.instance.EnemyManager.GetInRangeEnemys(Owner.Trans.position, 10);
             foreach (var target in Targets)
             {
                 var param = new BulletParam()
@@ -27,7 +27,7 @@ namespace YCG
                     Range = 50f,
                     Direction = (target.Trans.position - Owner.Trans.position).normalized
                 };
-                BulletManager.instance.ShotStraightBullet(param, Owner, Owner.Trans.position);
+                GameManager.instance.BulletManager.ShotStraightBullet(param, Owner, Owner.Trans.position);
             }
         }
     }

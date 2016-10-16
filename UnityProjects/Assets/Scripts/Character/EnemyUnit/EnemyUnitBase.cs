@@ -22,7 +22,7 @@ namespace YCG
 
         public virtual void Death()
 		{
-            EnemyManager.instance.OnDeathEnemy(this);
+            GameManager.instance.EnemyManager.OnDeathEnemy(this);
             TapTargetManager.instance.OnDestroyEnemy(this);
 			Destroy (Obj);
 		}

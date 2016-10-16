@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.UI;
 
 namespace YCG.UI
 {
     public class GUIManager : SingletonBehaviour<GUIManager>
     {
         IHPView _hpView;
+        [SerializeField]
+        Button _charaButton, _weaponButton, petButton, skillButton;
 
         protected override void OnAwake()
         {

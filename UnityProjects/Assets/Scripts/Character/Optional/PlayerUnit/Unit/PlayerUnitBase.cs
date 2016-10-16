@@ -112,13 +112,5 @@ namespace YCG.Player
             HP = value;
             GUIManager.instance.SetHPView(HP, MaxHP);
         }
-
-        //For Debug
-        public void ChangeNextCharacter()
-        {
-            int count = System.Enum.GetValues(typeof(Google2u.Player.rowIds)).Length;
-            _id = (Google2u.Player.rowIds)Mathf.Repeat((int)_id + 1, count);
-            ResetParamter();
-        }
 	}
 }

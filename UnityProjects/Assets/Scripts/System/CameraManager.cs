@@ -2,14 +2,18 @@
 
 public class CameraManager : MonoBehaviour
 {
-    [SerializeField]
-    Transform _trackTarget;
+    Transform TrackTarget { get; set; }
 
     void Update()
     {
-        if (_trackTarget != null)
+        if (TrackTarget != null)
         {
-            transform.position = _trackTarget.position;
+            transform.position = TrackTarget.position;
         }
+    }
+
+    public void SetTrackTarget(Transform target)
+    {
+        TrackTarget = target;
     }
 }

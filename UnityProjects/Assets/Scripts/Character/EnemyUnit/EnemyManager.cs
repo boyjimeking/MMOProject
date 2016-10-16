@@ -1,22 +1,22 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace YCG
 {
-    public class EnemyManager : SingletonBehaviour<EnemyManager>
+    public class EnemyManager
     {
         private List<IEnemyUnit> _enemyList = new List<IEnemyUnit>();
         private EnemySpawner _spawner;
 
-        protected override void OnAwake()
+        public EnemyManager(EnemySpawner spawner)
         {
-            base.OnAwake();
-            _spawner = GetComponentInChildren<EnemySpawner>();
+            _spawner = spawner;
             _spawner.LoadEnemy();
         }
 
-        void Update()
+        public void Update()
         {
             _spawner.OnUpdate();
         }

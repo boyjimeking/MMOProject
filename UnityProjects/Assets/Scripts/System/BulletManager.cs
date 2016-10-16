@@ -5,14 +5,13 @@ using YCG.Attachment;
 
 namespace YCG
 {
-    public class BulletManager : SingletonBehaviour<BulletManager>
+    public class BulletManager : MonoBehaviour
     {
         List<IBullet> _bulletPool = new List<IBullet>();
         BulletBase _straightBullet;
 
-        protected override void OnAwake()
+        void Awake()
         {
-            base.OnAwake();
             LoadBullet();
         }
 
