@@ -11,6 +11,7 @@ namespace YCG.Player
 
         List<PlayerUnitBase> _playerUnitList;
         public PlayerUnitBase MyControlUnit { get; private set; }
+        public Google2u.Player.rowIds ID { get; private set; }
 
         public PlayerManager()
         {
@@ -22,8 +23,9 @@ namespace YCG.Player
         {
             if (MyControlUnit != null)
             {
-                GameObject.DestroyImmediate(MyControlUnit);
+                GameObject.DestroyImmediate(MyControlUnit.gameObject);
             }
+            ID = id;
             var spawnUnit = _playerUnitList[(int)id];
             MyControlUnit = GameObject.Instantiate(spawnUnit, pos, spawnUnit.transform.rotation) as PlayerUnitBase;
             MyControlUnit.SetController(ControlType.Self);

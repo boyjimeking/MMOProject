@@ -1,4 +1,5 @@
-﻿using UnityEngine.SceneManagement;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using YCG.Player;
 
 namespace YCG
@@ -27,6 +28,14 @@ namespace YCG
         public void OnPlayerDeath()
         {
             SceneManager.LoadScene("Main");
+        }
+
+        //For Debug
+        public void ChangeNextCharacter()
+        {
+            int count = System.Enum.GetValues(typeof(Google2u.Player.rowIds)).Length;
+            var id = (Google2u.Player.rowIds)Mathf.Repeat((int) PlayerManager.ID + 1, count);
+            PlayerManager.SpawnMyControlUnit(id, PlayerManager.MyControlUnit.transform.position);
         }
     }
 }
