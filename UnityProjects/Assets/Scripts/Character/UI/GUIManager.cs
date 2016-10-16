@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace YCG.UI
@@ -6,8 +7,7 @@ namespace YCG.UI
     public class GUIManager : SingletonBehaviour<GUIManager>
     {
         IHPView _hpView;
-        [SerializeField]
-        Button _charaButton, _weaponButton, petButton, skillButton;
+        public Action SkillAction { get; set; }
 
         protected override void OnAwake()
         {
@@ -18,6 +18,12 @@ namespace YCG.UI
         public void SetHPView(int HP, int MaxHP)
         {
             _hpView.SetHPValue(HP, MaxHP);
+        }
+
+        public void OnInvokeSkill()
+        {
+            if (SkillAction != null)
+                SkillAction.Invoke();
         }
     }
 }

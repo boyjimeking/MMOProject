@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using YCG.UI;
 
 namespace YCG.Player
 {
@@ -27,6 +28,7 @@ namespace YCG.Player
             MyControlUnit = GameObject.Instantiate(spawnUnit, pos, spawnUnit.transform.rotation) as PlayerUnitBase;
             MyControlUnit.SetController(ControlType.Self);
             GameManager.instance.CameraManager.SetTrackTarget(MyControlUnit.transform);
+            GUIManager.instance.SkillAction = MyControlUnit.InvokeSkill;
         }
 
         public enum ControlType
