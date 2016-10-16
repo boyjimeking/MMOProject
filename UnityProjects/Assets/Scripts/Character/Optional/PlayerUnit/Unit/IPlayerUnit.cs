@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using YCG.Attachment;
-using YCG;
+using YCG.UI;
 
 namespace YCG.Player
 {
@@ -11,7 +11,6 @@ namespace YCG.Player
         Vector3 MoveDir { get; }
 		
         int Heal { get; }
-		IHPView HPView { get; }
 		IWeapon Weapon { get; }
         ISpecialSkill Skill { get; }
 		List<int> AttachmentCount { get; }

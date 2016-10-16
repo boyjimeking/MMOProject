@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using YCG.Attachment;
+using YCG.UI;
 
 namespace YCG.Player
 {
@@ -13,9 +14,6 @@ namespace YCG.Player
 
         [SerializeField]
         Google2u.Player.rowIds _id;
-        [SerializeField]
-        SimpleHPView _hpView;
-		public IHPView HPView { get; protected set; }
         [SerializeField]
         WeaponBase _temporaryWeapon;
 		public IWeapon Weapon { get; protected set; }
@@ -34,7 +32,6 @@ namespace YCG.Player
 		{
 			InitializeList ();
 			InitializeParameter ();
-            HPView = _hpView;
             SetWeapon(_temporaryWeapon);
 		}
 
@@ -113,7 +110,7 @@ namespace YCG.Player
         private void SetHP(int value)
         {
             HP = value;
-            HPView.SetHPValue(HP, MaxHP);
+            GUIManager.instance.SetHPView(HP, MaxHP);
         }
 
         //For Debug

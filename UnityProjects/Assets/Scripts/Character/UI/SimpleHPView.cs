@@ -1,12 +1,22 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace YCG
+namespace YCG.UI
 {
     public class SimpleHPView : MonoBehaviour, IHPView
     {
         [SerializeField]
         Image _hpBar;
+
+        public void Show()
+        {
+            gameObject.SetActive(true);
+        }
+
+        public void Hide()
+        {
+            gameObject.SetActive(false);
+        }
 
         public void SetHPValue(float ratio)
         {
